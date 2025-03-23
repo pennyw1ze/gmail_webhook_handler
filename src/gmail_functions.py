@@ -3,7 +3,6 @@ from google.auth.transport.requests import Request
 import pickle
 import os
 import re
-from bot_functions import received_payment, add_netflix, add_spotify
 
 def get_latest_email():
 

@@ -7,7 +7,7 @@ import os
 base_path = os.path.dirname(os.path.abspath(__file__))
 
 # Token path
-token_path = os.path.join(base_path, '../..', 'data', 'token.pickle')
+token_path = os.path.join(base_path, '..', 'data', 'token.pickle')
 
 def send_watch_request():
 
@@ -39,3 +39,5 @@ def send_watch_request():
     # Send the API request
     response = requests.post(url, headers=headers, json=data)
     print(response.json())  # Should return historyId and expiration
+
+send_watch_request()

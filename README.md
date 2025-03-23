@@ -24,8 +24,8 @@ and a lot more!
 # **HOW TO USE** 🚀
 1. Clone the repository;
 2. Install the requirements;
-3. Set up the webhook on your gmail account;
-4. Set up ngrok;
+3. Set up ngrok;
+4. Set up the webhook on your gmail account;
 5. Run the server;
 6. Enjoy!
 
@@ -42,6 +42,7 @@ sudo apt install python3 python3-pip
 - Then, you need to install and create a virtual environment to install the pip packages:
 ```bash
 pip install virtualenv
+sudo apt install python3.10-venv
 python3 -m venv myenv
 source myenv/bin/activate
 ```
@@ -56,4 +57,56 @@ source myenv/bin/activate
 ```bash
 cd gmail_webhook_handler
 pip install -r requirements.txt
+```
+
+- Once you are done, you can deactivate the virtual environment with the following command:
+```bash
+deactivate
+```
+
+## 3. **SET UP NGROK**
+- Log in or create an account on [ngrok](https://ngrok.com/);
+- Follow the instructions to set up ngrok on your machine. Here I report instructions for linux:
+```bash
+curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+	| sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+	&& echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+	| sudo tee /etc/apt/sources.list.d/ngrok.list \
+	&& sudo apt update \
+	&& sudo apt install ngrok
+
+ngrok config add-authtoken <your_auth_token>
+```
+- Once you are done, go in the 'Setup & Installation' section and look for your static domain;
+- The domain will be in the form:
+> ngrok http --url=<your_address_here> 80
+- Pic the --url=<your_address_here> and copy paste it in the data/ngrok_url_sample.txt file and rename it to ngrok_url.txt;
+```bash
+mv data/ngrok_url_sample.txt data/ngrok_url.txt
+```
+- Run the command provided by ngrok to start the tunnel (just for testing, the bot will run the server holding the ngrok url):
+```bash
+ngrok http --url=<domain_name> 80
+```
+
+## 4. **SET UP THE WEBHOOK ON YOUR GMAIL ACCOUNT**
+- To set up gmail webhook you can find a usefull guide [here](https://hevodata.com/learn/gmail-webhook/);
+- Download the secret.json file and put it in the data folder;
+- Run the following command to get the authorization token (you will be asked to access with your google account and grant permission to read email):
+```bash
+cd scripts
+python3 get_access_token.py
+```
+- The token will be saved in the data folder as token.pickle;
+- You will also need to run the set_watch_function to set up the webhook on your gmail account:
+```bash
+python3 set_watch_function.py
+```
+- This function must be ran every day to keep the webhook alive. You can set up a cron job to do this automatically:
+```bash
+crontab -e
+```
+- Add the following line to the crontab file:
+```bash
+0 0 * * * /usr/bin/python3 /path/to/gmail_webhook_handler/scripts/set_watch_function.py
 ```
