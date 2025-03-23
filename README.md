@@ -45,7 +45,7 @@ pip install virtualenv
 python3 -m venv myenv
 source myenv/bin/activate
 ```
-[!NOTE]
+> [!NOTE]
 > - If you are using windows, you can create a virtual environment with the following command:
 > ```bash
 > python -m venv myenv
