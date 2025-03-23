@@ -13,7 +13,8 @@ The email will then result as a read email.
 ## **POSSIBLE APPLICATION** 💡
 Use your creativity!
 Some ideas:
-- Filter email sent by paypal, extract the information regarding the sender and the amount of money, keep a local balance of your expense, make your statistics, keep track of the money spent or earned, ecc. (There is a fun application to split Netflix and Spotify payment between friends via telegram bot that implements this webhook handler available on my github [here] (https://github.com/pennyw1ze/paypal_splitter);  
+- Filter email sent by paypal, extract the information regarding the sender and the amount of money, keep a local balance of your expense, make your statistics, keep track of the money spent or earned, ecc. (There is a fun application to split Netflix and Spotify payment between friends via telegram bot that implements this webhook handler available on my github [here](https://github.com/pennyw1ze/paypal_splitter);
+- Automatically download attachments from specific senders or with specific keywords in the subject
 - Redirect just important emails by filtering the sender on your telegram account or a prioritary email ecc.;
 - Personalized spam filter;
 and a lot more!
@@ -28,3 +29,7 @@ and a lot more!
 5. Run the server;
 6. Enjoy!
 
+## 1. **CLONE THE REPOSITORY**
+```bash
+git clone https://github.com/pennyw1ze/gmail_webhook_handler
+```
