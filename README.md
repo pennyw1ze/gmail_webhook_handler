@@ -33,3 +33,27 @@ and a lot more!
 ```bash
 git clone https://github.com/pennyw1ze/gmail_webhook_handler
 ```
+
+## 2. **INSTALL THE REQUIREMENTS**
+- First, you need to install python3 and pip3 on your machine.
+```bash
+sudo apt install python3 python3-pip
+```
+- Then, you need to install and create a virtual environment to install the pip packages:
+```bash
+pip install virtualenv
+python3 -m venv myenv
+source myenv/bin/activate
+```
+[!NOTE]
+> - If you are using windows, you can create a virtual environment with the following command:
+> ```bash
+> python -m venv myenv
+> myenv\Scripts\activate
+> ```
+
+- Finally, you can install the requirements:
+```bash
+cd gmail_webhook_handler
+pip install -r requirements.txt
+```
