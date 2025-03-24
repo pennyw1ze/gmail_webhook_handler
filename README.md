@@ -26,7 +26,7 @@ and a lot more!
 2. Install the requirements;
 3. Set up ngrok;
 4. Set up the webhook on your gmail account;
-5. Run the server;
+5. Customize the webhook handler and run the server;
 6. Enjoy!
 
 ## 1. **CLONE THE REPOSITORY**
@@ -106,7 +106,31 @@ python3 set_watch_function.py
 ```bash
 crontab -e
 ```
-- Add the following line to the crontab file:
+- Add the following line to the crontab file (substitute /path/to/gmail_webhook_handler with the path to the cloned repository):
 ```bash
 0 0 * * * /usr/bin/python3 /path/to/gmail_webhook_handler/scripts/set_watch_function.py
 ```
+
+## 5. **CUSTOMIZE THE WEBHOOK HANDLER AND RUN THE SERVER**
+- Customize the gmail_functions.py file to implement your own webhook handler;
+- You can use the following functions to interact with the email. The email is a dictionary with the following keys:
+```python
+{
+	"subject": "The subject of the email",
+	"from": "The sender of the email",
+	"to": "The receiver of the email",
+	"date": "The date of the email",
+	"body": "The body of the email",
+	"attachments": "The attachments of the email"
+}
+```
+- Send an email to your gmail account to test the webhook handler and start playing with it;
+
+- Run the server with the following command:
+```bash
+python3 main.py
+```
+
+## 6. **ENJOY!**
+Have fun 😊
+
