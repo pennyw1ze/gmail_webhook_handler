@@ -41,13 +41,20 @@ def start_ngrok():
 class WebhookHandler(http.server.BaseHTTPRequestHandler):
     # Handle POST requests
     def do_POST(self):
+        # Debug print
+        print("POST request received!")
+        # Process email
         get_latest_email()
+        # Send response
         self.send_response(200)
         self.end_headers()
 
     # Handle GET requests
     # Required for ngrok to work
     def do_GET(self):
+        # Debug print
+        print("GET request received!")
+        # Send response
         self.send_response(200)
         self.end_headers()
 
@@ -59,4 +66,4 @@ def start_server(server_class=http.server.HTTPServer, handler_class=WebhookHandl
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("Server interrupted!")
+        print("\nServer interrupted!")
